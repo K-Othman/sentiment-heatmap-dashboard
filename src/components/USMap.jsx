@@ -10,22 +10,22 @@ import { feature } from "topojson-client";
 import { getSentimentColor } from "../utils/sentimentUtils";
 import ReactTooltip from "react-tooltip";
 
-// US states topojson
+// US states TopoJSON source
 const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json";
 
 const USMap = () => {
-  const [usGeoData, setUsGeoData] = useState(null);
-  const [sentimentData, setSentimentData] = useState({});
-  const [tooltipContent, setTooltipContent] = useState("");
+  const [usGeoData, setUsGeoData] = useState(null); // GeoJSON data for U.S. states
+  const [sentimentData, setSentimentData] = useState({}); // Sentiment data per state
+  const [tooltipContent, setTooltipContent] = useState(""); // Tooltip content
 
   useEffect(() => {
-    // Convert TopoJSON to GeoJSON
+    // Fetch and convert TopoJSON to GeoJSON for U.S. state shapes
     d3.json(geoUrl).then((topoData) => {
       const geo = feature(topoData, topoData.objects.states);
       setUsGeoData(geo);
     });
 
-    // Load sentiment data
+    // Load sentiment data from CSV and calculate averages per state
     d3.csv("/src/data/geo_sentiments.csv").then((rawData) => {
       const stateSentiment = {};
 
@@ -34,6 +34,7 @@ const USMap = () => {
         const region = row.Region.trim();
         const score = parseFloat(row.RandomValue);
 
+        // Only include U.S. data and valid numbers
         if (country === "United States" && !isNaN(score)) {
           if (!stateSentiment[region]) {
             stateSentiment[region] = { total: 0, count: 0 };
@@ -43,6 +44,7 @@ const USMap = () => {
         }
       });
 
+      // Calculate average score per state
       const averageSentiment = {};
       for (const state in stateSentiment) {
         const { total, count } = stateSentiment[state];
@@ -53,7 +55,7 @@ const USMap = () => {
     });
   }, []);
 
-  // US state names lookup
+  // FIPS code to state name mapping
   const stateNames = {
     1: "Alabama",
     2: "Alaska",
@@ -160,6 +162,7 @@ const USMap = () => {
         </ZoomableGroup>
       </ComposableMap>
 
+      {/* Tooltip shows state sentiment value or "No data" */}
       <ReactTooltip>{tooltipContent}</ReactTooltip>
     </div>
   );

@@ -1,4 +1,5 @@
 .map-container {
+  /* Container for the map with max width and padding */
   max-width: 1000px;
   margin: 0 auto;
   padding: 20px;
@@ -7,11 +8,13 @@
 /* App.jsx */
 
 .toggle-container {
+  /* Center align the toggle buttons */
   text-align: center;
   margin: 1rem 0;
 }
 
 .toggle-button {
+  /* Style for the map view toggle buttons */
   padding: 0.5rem 1rem;
   margin-right: 10px;
   background-color: #e0e0e0;
@@ -23,16 +26,19 @@
 }
 
 .toggle-button:hover {
+  /* Hover effect for toggle buttons */
   background-color: #d5d5d5;
 }
 
 .toggle-button.active {
+  /* Active toggle button styling */
   background-color: #000053;
   color: #fff;
 }
 
 /* Legend */
 .legend-container {
+  /* Flex layout for sentiment legend items */
   display: flex;
   justify-content: center;
   gap: 1.5rem;
@@ -41,12 +47,14 @@
 }
 
 .legend-item {
+  /* Align items horizontally in legend */
   display: flex;
   align-items: center;
   font-size: 14px;
 }
 
 .legend-color {
+  /* Colored box for each sentiment range */
   width: 20px;
   height: 20px;
   display: inline-block;
@@ -56,5 +64,6 @@
 }
 
 .legend-label {
+  /* Label for each sentiment range */
   color: #333;
 }
