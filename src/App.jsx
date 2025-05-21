@@ -1,10 +1,12 @@
 import "./App.css";
+import WorldMap from "./components/WorldMap";
 
 function App() {
   return (
-    <>
-      <h1 className="text-red">Welcome to React</h1>
-    </>
+    <main>
+      <h1>Sentiment Heatmap</h1>
+      <WorldMap />
+    </main>
   );
 }
 
