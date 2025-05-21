@@ -3,3 +3,58 @@
   margin: 0 auto;
   padding: 20px;
 }
+
+/* App.jsx */
+
+.toggle-container {
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.toggle-button {
+  padding: 0.5rem 1rem;
+  margin-right: 10px;
+  background-color: #e0e0e0;
+  color: #000;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.toggle-button:hover {
+  background-color: #d5d5d5;
+}
+
+.toggle-button.active {
+  background-color: #000053;
+  color: #fff;
+}
+
+/* Legend */
+.legend-container {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+
+.legend-color {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  margin-right: 8px;
+  border-radius: 3px;
+  border: 1px solid #999;
+}
+
+.legend-label {
+  color: #333;
+}
